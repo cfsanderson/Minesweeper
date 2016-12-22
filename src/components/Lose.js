@@ -7,7 +7,7 @@ class Lose extends Component {
   }
 
   render () {
-    return <div>
+    return <div className='lose'>
       <h1>
         <i className='fa fa-bomb fa-spin fa-2x fa-fw' aria-hidden='true' />
         BOOOOOM!!!

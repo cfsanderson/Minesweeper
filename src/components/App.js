@@ -9,29 +9,32 @@ class App extends Component {
   constructor () {
     super()
     this.state = {
-      board: []
-      // state: 'start'
+      board: [],
+      state: 'start'
     }
   }
 
-  componentDidMount () {
-    window.fetch('http://minesweeper-api.herokuapp.com/games?difficulty=0', {method: 'POST'}).then((response) => {
+  createGame (i) {
+    // console.log(i)
+    window.fetch(`http://minesweeper-api.herokuapp.com/games?difficulty=${i}`, {method: 'POST'}).then((response) => {
       return response.json()
     }).then((data) => {
       this.setState({
         id: data.id,
         board: data.board,
-        state: 'start',
-        mines: data.mines
+        state: data.state,
+        mines: data.mines,
+        wonMessage: false,
+        lostMessage: false
       })
     })
   }
 
   componentDidUpdate (prevProps, prevState) {
     if (prevState.state === 'playing' && this.state.state === 'lost') {
-      setTimeout((e) => { this.setState({lostMessage: true}) }, 3000)
-    } else if (this.state.state === 'won') {
-      setTimeout((e) => { this.setState({wonMessage: true}) }, 3000)
+      setTimeout((e) => { this.setState({lostMessage: true}) }, 3500)
+    } else if (prevState.state === 'playing' && this.state.state === 'won') {
+      setTimeout((e) => { this.setState({wonMessage: true}) }, 3500)
     }
   }
 
@@ -59,15 +62,16 @@ class App extends Component {
   }
 
   reset () {
+    console.log('clicking')
     this.setState({
-      state: 'new'
+      state: 'start'
     })
   }
 
   render () {
     let view
     if (this.state.state === 'start') {
-      view = <Start reset={() => this.reset()} />
+      view = <Start createGame={(i) => this.createGame(i)} />
     } else if (this.state.lostMessage) {
       view = <Lose reset={() => this.reset()} />
     } else if (this.state.wonMessage) {
@@ -77,9 +81,10 @@ class App extends Component {
     }
 
     return <div className='app'>
-      <h1>Explosion!</h1>
+      <h1>Minesweeper</h1>
       {view}
       <footer>Potatoes made with love at the Iron Yard.</footer>
+      {/* Replace with StandardFooter? */}
     </div>
   }
 }

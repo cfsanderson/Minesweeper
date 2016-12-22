@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class Start extends Component {
 
   static propTypes = {
-    reset: React.PropTypes.func.isRequired
+    createGame: React.PropTypes.func.isRequired
   }
 
   // reset () {
@@ -19,10 +19,14 @@ class Start extends Component {
   render () {
     return <div>
       <h1>Ready Player One?</h1>
-      <button onClick={() => this.props.reset()}>
-        <i className='fa fa-bomb' aria-hidden='true' />
-        Play Again?
-        <i className='fa fa-flag' aria-hidden='true' />
+      <button onClick={() => this.props.createGame(0)}>
+        Easy
+      </button>
+      <button onClick={() => this.props.createGame(1)}>
+        Normal
+      </button>
+      <button onClick={() => this.props.createGame(2)}>
+        Difficult
       </button>
     </div>
   }
