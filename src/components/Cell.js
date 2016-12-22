@@ -17,7 +17,8 @@ class Cell extends Component {
   }
 
   render () {
-    return <td onClick={() => this.props.handleCheck()}
+    return <td
+      onClick={() => this.props.handleCheck()}
       onContextMenu={(e) => {
         e.preventDefault()
         this.props.handleFlag()

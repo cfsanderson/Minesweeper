@@ -28,8 +28,8 @@ body,
     border-spacing: 0;
 
     td {
-      height: 16px;
-      width: 16px;
+      height: 20px;
+      width: 20px;
       border: 1px solid black;
       text-align: center;
       line-height: 16px;
@@ -61,3 +61,5 @@ body,
 footer {
   padding: 1em;
 }
+
+// <i class="fa fa-bomb" aria-hidden="true"></i>

@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import Cell from './Cell'
+import GameBoard from './GameBoard'
+import Lose from './Lose'
+import Start from './Start'
+import Win from './Win'
 
 class App extends Component {
 
@@ -11,7 +14,7 @@ class App extends Component {
   }
 
   componentDidMount () {
-    window.fetch('http://minesweeper-api.herokuapp.com/games?difficulty=1', {method: 'POST'}).then((response) => {
+    window.fetch('http://minesweeper-api.herokuapp.com/games?difficulty=0', {method: 'POST'}).then((response) => {
       return response.json()
     }).then((data) => {
       this.setState({
@@ -21,6 +24,14 @@ class App extends Component {
         mines: data.mines
       })
     })
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (prevState.state === 'playing' && this.state.state === 'lost') {
+      setTimeout((e) => { this.setState({lostMessage: true}) }, 3000)
+    } else if (this.state.state === 'won') {
+      setTimeout((e) => { this.setState({wonMessage: true}) }, 3000)
+    }
   }
 
   check (x, y) {
@@ -47,28 +58,20 @@ class App extends Component {
   }
 
   render () {
-    const rows = this.state.board.map((row, i) => {
-      const cols = row.map((col, j) => {
-        return <Cell
-          value={col.toString()}
-          handleCheck={() => { this.check(j, i) }}
-          handleFlag={() => { this.flag(j, i) }}
-          key={j} />
-      })
-      return <tr key={i}>
-        {cols}
-      </tr>
-    })
-    return <div className='app'>
-      <h1>Explosion Avoider!</h1>
+    let view
+    if (this.state.state === 'start') {
+      view = <Start />
+    } else if (this.state.lostMessage) {
+      view = <Lose />
+    } else if (this.state.wonMessage) {
+      view = <Win />
+    } else {
+      view = <GameBoard board={this.state.board} check={(x, y) => this.check(x, y)} flag={(x, y) => this.flag(x, y)} />
+    }
 
-      <div className='gameboard'>
-        <table>
-          <tbody>
-            {rows}
-          </tbody>
-        </table>
-      </div>
+    return <div className='app'>
+      <h1>Explosion!</h1>
+      {view}
       <footer>Potatoes made with love at the Iron Yard.</footer>
     </div>
   }
