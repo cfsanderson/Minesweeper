@@ -10,6 +10,7 @@ class App extends Component {
     super()
     this.state = {
       board: []
+      // state: 'start'
     }
   }
 
@@ -20,7 +21,7 @@ class App extends Component {
       this.setState({
         id: data.id,
         board: data.board,
-        state: data.state,
+        state: 'start',
         mines: data.mines
       })
     })
@@ -57,14 +58,20 @@ class App extends Component {
     })
   }
 
+  reset () {
+    this.setState({
+      state: 'new'
+    })
+  }
+
   render () {
     let view
     if (this.state.state === 'start') {
-      view = <Start />
+      view = <Start reset={() => this.reset()} />
     } else if (this.state.lostMessage) {
-      view = <Lose />
+      view = <Lose reset={() => this.reset()} />
     } else if (this.state.wonMessage) {
-      view = <Win />
+      view = <Win reset={() => this.reset()} />
     } else {
       view = <GameBoard board={this.state.board} check={(x, y) => this.check(x, y)} flag={(x, y) => this.flag(x, y)} />
     }

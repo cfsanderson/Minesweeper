@@ -2,18 +2,23 @@ import React, { Component } from 'react'
 
 class Lose extends Component {
 
-  // static propTypes = {
-  //   value: React.PropTypes.string.isRequired,
-  //   handleCheck: React.PropTypes.func.isRequired,
-  //   handleFlag: React.PropTypes.func.isRequired
-  // }
+  static propTypes = {
+    reset: React.PropTypes.func.isRequired
+  }
 
   render () {
     return <div>
-      <h1>BOOOOOoooM!!!</h1>
-      <button>Play Again?</button>
+      <h1>
+        <i className='fa fa-bomb fa-spin fa-2x fa-fw' aria-hidden='true' />
+        BOOOOOM!!!
+        <i className='fa fa-bomb fa-spin fa-2x fa-fw' aria-hidden='true' />
+      </h1>
+      <button onClick={() => this.props.reset()}>
+        Play Again?
+      </button>
     </div>
   }
 }
+// http://fontawesome.io/examples/
 
 export default Lose
