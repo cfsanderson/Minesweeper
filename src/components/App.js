@@ -15,7 +15,6 @@ class App extends Component {
   }
 
   createGame (i) {
-    // console.log(i)
     window.fetch(`http://minesweeper-api.herokuapp.com/games?difficulty=${i}`, {method: 'POST'}).then((response) => {
       return response.json()
     }).then((data) => {
@@ -39,7 +38,6 @@ class App extends Component {
   }
 
   check (x, y) {
-    console.log(`Im checking ${x} and ${y}`)
     window.fetch(`http://minesweeper-api.herokuapp.com/games/${this.state.id}/check?row=${y}&col=${x}`, {method: 'POST'}).then((response) => {
       return response.json()
     }).then((data) => {
@@ -51,7 +49,6 @@ class App extends Component {
   }
 
   flag (x, y) {
-    console.log(`Im flagging ${x} and ${y}`)
     window.fetch(`http://minesweeper-api.herokuapp.com/games/${this.state.id}/flag?row=${y}&col=${x}`, {method: 'POST'}).then((response) => {
       return response.json()
     }).then((data) => {
@@ -81,9 +78,11 @@ class App extends Component {
     }
 
     return <div className='app'>
-      <h1>Minesweeper</h1>
+      <header className='header'>
+        <h1>Minesweeper</h1>
+      </header>
       {view}
-      <footer>Potatoes made with love at the Iron Yard.</footer>
+      <footer className='footer'>Potatoes made with love at the Iron Yard.</footer>
       {/* Replace with StandardFooter? */}
     </div>
   }

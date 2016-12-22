@@ -1,5 +1,8 @@
 @import 'utility';
 $base-font-family: 'Special Elite', monospace;
+$base-color: hsla(86, 67%, 64%, 1);
+$base-color-transparent: hsla(86, 67%, 64%, 0.7);
+
 
 html {
   text-size-adjust: 100%;
@@ -12,15 +15,89 @@ body {
   color: hsl(171, 16%, 91%);
 }
 
+.header {
+  background-color: $base-color;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5em;
+  text-shadow: 1px 2px 6px hsla(0, 0%, 21%, 0.5);
+  // -webkit-text-stroke: 0.25px black;
+}
+
 body,
 #root,
-.app {
+.app, {
   min-height: 100vh;
-  background-image: url('http://i.imgur.com/SKu4U.jpg');
+  background-image: url('http://eskipaper.com/images/grass-field-1.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
 }
+
+.startScreen,
+.winScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: $base-color-transparent;
+  text-shadow: 1px 1px 4px hsla(0, 0%, 21%, 0.75);
+  padding: 2em;
+  border-radius: 2em;
+
+  button {
+    font-family: $base-font-family;
+    font-size: 1em;
+    width: 200px;
+    height: 40px;
+    margin: 2px;
+    border-top: 1px solid #5dd435;
+    background: #009676;
+    background: -webkit-gradient(linear, left top, left bottom, from(#39de99), to(#009676));
+    background: -webkit-linear-gradient(top, #39de99, #009676);
+    background: -moz-linear-gradient(top, #39de99, #009676);
+    background: -ms-linear-gradient(top, #39de99, #009676);
+    background: -o-linear-gradient(top, #39de99, #009676);
+    padding: 13px 26px;
+    -webkit-border-radius: 23px;
+    -moz-border-radius: 23px;
+    border-radius: 23px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: #ebfff2;
+    text-decoration: none;
+    vertical-align: middle;
+
+    &:hover {
+      border-top-color: #a4edb1;
+      background: #a4edb1;
+      color: hsl(104, 4%, 19%);
+      text-shadow: 0;
+    }
+
+    &:active {
+      border-top-color: #7efc7c;
+      background: #7efc7c;
+    }
+  }
+}
+
+// body,
+// #root,
+// .app,
+// .lose {
+//   // min-height: 100vh;
+//   background-image: url('http://i.imgur.com/SKu4U.jpg');
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   // display: flex;
+//   // flex-direction: column;
+// }
 
 .app {
   display: flex;
@@ -43,11 +120,11 @@ body,
       color: hsl(0, 12%, 6%);
 
       &.unrevealed {
-        background-color: rgb(148, 148, 148);
+        background-color: hsla(0, 2%, 55%, 0.75);
       }
 
       &.empty {
-        background-color: rgb(232, 232, 232);
+        background-color: hsla(0, 0%, 90%, 0.5);
       }
 
       &.numbered {
@@ -67,21 +144,34 @@ body,
       }
 
       &:hover {
-        background-color: #f5f5f5
+        background-color: hsla(0, 0%, 100%, 0.75);
       }
     }
   }
 }
 
 .lose {
-  color: hsla(0, 85%, 50%, 0.75);
+  color: hsla(0, 85%, 50%, 1);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background-color: hsla(0, 8%, 26%, 0.75);
+  background-color: hsla(0, 0%, 0%, 0.75);
+  text-shadow: 1px 2px 6px hsla(0, 0%, 100%, 0.5);
+  border-radius: 10px;
+  padding: 2em;
+  background-image: url('http://i.imgur.com/SKu4U.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100vw;
 
   button {
-    
+    height: 40px;
+    border-radius: 1em;
+    background-color: hsla(0, 85%, 50%, 0.5);
+    color: hsl(0, 0%, 100%);
+    font-size: 1em;
+    font-family: $base-font-family;
   }
 }
 
@@ -90,3 +180,20 @@ footer {
 }
 
 // <i class="fa fa-bomb" aria-hidden="true"></i>
+
+// button {
+//   font-family: $base-font-family;
+//   font-size: 1em;
+//   width: 150px;
+//   height: 50px;
+//   margin: 2px;
+//   border-radius: 2em;
+//   background-color: inherit;
+//   background-blend-mode: soft-light;
+//
+//   &:hover {
+//     background-color: lighten($base-color, 10%);
+//   }
+//
+//   &
+// }

@@ -7,7 +7,7 @@ class Win extends Component {
   }
 
   render () {
-    return <div>
+    return <div className='winScreen'>
       <h1>
         <i className='fa fa-flag fa-flip-horizontal fa-2x fa-fw' aria-hidden='true' />
         YOU WIN!!!
