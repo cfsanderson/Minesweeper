@@ -3,6 +3,7 @@ import GameBoard from './GameBoard'
 import Lose from './Lose'
 import Start from './Start'
 import Win from './Win'
+import Footer from './Footer'
 
 class App extends Component {
 
@@ -31,9 +32,9 @@ class App extends Component {
 
   componentDidUpdate (prevProps, prevState) {
     if (prevState.state === 'playing' && this.state.state === 'lost') {
-      setTimeout((e) => { this.setState({lostMessage: true}) }, 3500)
+      setTimeout((e) => { this.setState({lostMessage: true}) }, 3000)
     } else if (prevState.state === 'playing' && this.state.state === 'won') {
-      setTimeout((e) => { this.setState({wonMessage: true}) }, 3500)
+      setTimeout((e) => { this.setState({wonMessage: true}) }, 3000)
     }
   }
 
@@ -82,7 +83,7 @@ class App extends Component {
         <h1>Minesweeper</h1>
       </header>
       {view}
-      <footer className='footer'>Potatoes made with love at the Iron Yard.</footer>
+      <Footer />
       {/* Replace with StandardFooter? */}
     </div>
   }

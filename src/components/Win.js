@@ -7,11 +7,13 @@ class Win extends Component {
   }
 
   render () {
-    return <div className='winScreen'>
+    return <div className='win'>
+      <div>
+        <i className='fa fa-flag fa-flip-horizontal fa-fw' aria-hidden='true' />
+        <i className='fa fa-flag fa-fw' aria-hidden='true' />
+      </div>
       <h1>
-        <i className='fa fa-flag fa-flip-horizontal fa-2x fa-fw' aria-hidden='true' />
         YOU WIN!!!
-        <i className='fa fa-flag fa-2x fa-fw' aria-hidden='true' />
       </h1>
       <button onClick={() => this.props.reset()}>
         Play Again?
