@@ -1,9 +1,11 @@
 @import 'utility';
 $base-font-family: 'Special Elite', monospace;
-$base-color: hsla(86, 67%, 64%, 1);
+$base-color: hsla(151, 42%, 28%, 1);
 $base-color-transparent: hsla(86, 67%, 64%, 0.7);
 $bomb-red: hsla(0, 85%, 50%, 1);
 $base-font-color: hsl(171, 16%, 91%);
+
+// hsla(86, 67%, 64%, 1)
 
 html {
   text-size-adjust: 100%;
@@ -17,7 +19,12 @@ body {
 }
 
 .header {
-  background-color: $base-color;
+  // background-color: $base-color;
+  background: -webkit-gradient(linear, left top, left bottom, from(#39de99), to(hsl(145, 100%, 29%)));
+  background: -webkit-linear-gradient(top, #39de99, hsl(145, 100%, 29%));
+  background: -moz-linear-gradient(top, #39de99, hsl(145, 100%, 29%));
+  background: -ms-linear-gradient(top, #39de99, hsl(145, 100%, 29%));
+  background: -o-linear-gradient(top, #39de99, hsl(145, 100%, 29%));
   width: 100%;
   text-align: center;
   font-size: 2em;
@@ -354,28 +361,33 @@ body,
 .footer {
   color: hsl(0, 0%, 100%);
   font-weight: lighter;
-  background: $base-color;
+  // background: $base-color;
   min-width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(#39de99), to(hsl(145, 100%, 29%)));
+  background: -webkit-linear-gradient(top, #39de99, hsl(145, 100%, 29%));
+  background: -moz-linear-gradient(top, #39de99, hsl(145, 100%, 29%));
+  background: -ms-linear-gradient(top, #39de99, hsl(145, 100%, 29%));
+  background: -o-linear-gradient(top, #39de99, hsl(145, 100%, 29%));
 
   h2 {
-    padding-top: 1em;
-    padding-bottom: 2em;
+    // padding-bottom: 2em;
     text-align: center;
     font-size: 2em;
     font-weight: lighter;
     font-variant-caps: all-small-caps;
-    // padding: 0 0.5em;
   }
 
+  .socials,
   ul {
     display: flex;
     justify-content: space-around;
-    margin: -3em 10em 5em 10em;
+    // margin: -3em 10em 5em 10em;
     list-style-type: none;
     padding-left: 0;
+    // width: 500px;
 
     li {
-      font-size: 3em;
+      font-size: 2em;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -416,7 +428,7 @@ body,
 
     li {
       flex-wrap: wrap;
-      font-size: 4em;
+      font-size: 1em;
       justify-content: center;
       align-items: center;
       width: 85px;
@@ -436,7 +448,7 @@ body,
   }
 }
 
-ul.socials {
+.socials ul {
   li {
     border: 0 solid;
     box-shadow: inset 10 10 50px hsla(191, 46, 87, 0.1);
