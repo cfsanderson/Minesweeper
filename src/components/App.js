@@ -84,7 +84,6 @@ class App extends Component {
       </header>
       {view}
       <Footer />
-      {/* Replace with StandardFooter? */}
     </div>
   }
 }
