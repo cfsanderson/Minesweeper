@@ -1,6 +1,6 @@
 # Minesweeper
 
-![](./src/images/minesweeper-example.gif)
+![](./src/images/minesweeper.png)
 
 This game is a classic and a ton of fun to design. This app was built as part of my course work for [The Iron Yard](https://www.theironyard.com/). The key objectives for this project were
 
