@@ -3,10 +3,8 @@ import GameBoard from './GameBoard'
 import Lose from './Lose'
 import Start from './Start'
 import Win from './Win'
-import Footer from './Footer'
 
 class App extends Component {
-
   constructor () {
     super()
     this.state = {
@@ -16,47 +14,68 @@ class App extends Component {
   }
 
   createGame (i) {
-    window.fetch(`http://minesweeper-api.herokuapp.com/games?difficulty=${i}`, {method: 'POST'}).then((response) => {
-      return response.json()
-    }).then((data) => {
-      this.setState({
-        id: data.id,
-        board: data.board,
-        state: data.state,
-        mines: data.mines,
-        wonMessage: false,
-        lostMessage: false
+    window
+      .fetch(`http://minesweeper-api.herokuapp.com/games?difficulty=${i}`, {
+        method: 'POST'
       })
-    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        this.setState({
+          id: data.id,
+          board: data.board,
+          state: data.state,
+          mines: data.mines,
+          wonMessage: false,
+          lostMessage: false
+        })
+      })
   }
 
   componentDidUpdate (prevProps, prevState) {
     if (prevState.state === 'playing' && this.state.state === 'lost') {
-      setTimeout((e) => { this.setState({lostMessage: true}) }, 3000)
+      setTimeout((e) => {
+        this.setState({ lostMessage: true })
+      }, 3000)
     } else if (prevState.state === 'playing' && this.state.state === 'won') {
-      setTimeout((e) => { this.setState({wonMessage: true}) }, 3000)
+      setTimeout((e) => {
+        this.setState({ wonMessage: true })
+      }, 3000)
     }
   }
 
   check (x, y) {
-    window.fetch(`http://minesweeper-api.herokuapp.com/games/${this.state.id}/check?row=${y}&col=${x}`, {method: 'POST'}).then((response) => {
-      return response.json()
-    }).then((data) => {
-      this.setState({
-        board: data.board,
-        state: data.state
+    window
+      .fetch(
+        `http://minesweeper-api.herokuapp.com/games/${this.state.id}/check?row=${y}&col=${x}`,
+        { method: 'POST' }
+      )
+      .then((response) => {
+        return response.json()
       })
-    })
+      .then((data) => {
+        this.setState({
+          board: data.board,
+          state: data.state
+        })
+      })
   }
 
   flag (x, y) {
-    window.fetch(`http://minesweeper-api.herokuapp.com/games/${this.state.id}/flag?row=${y}&col=${x}`, {method: 'POST'}).then((response) => {
-      return response.json()
-    }).then((data) => {
-      this.setState({
-        board: data.board
+    window
+      .fetch(
+        `http://minesweeper-api.herokuapp.com/games/${this.state.id}/flag?row=${y}&col=${x}`,
+        { method: 'POST' }
+      )
+      .then((response) => {
+        return response.json()
       })
-    })
+      .then((data) => {
+        this.setState({
+          board: data.board
+        })
+      })
   }
 
   reset () {
@@ -75,16 +94,18 @@ class App extends Component {
     } else if (this.state.wonMessage) {
       view = <Win reset={() => this.reset()} />
     } else {
-      view = <GameBoard board={this.state.board} check={(x, y) => this.check(x, y)} flag={(x, y) => this.flag(x, y)} />
+      view = (
+        <div className='view'>
+          <GameBoard
+            board={this.state.board}
+            check={(x, y) => this.check(x, y)}
+            flag={(x, y) => this.flag(x, y)}
+          />
+        </div>
+      )
     }
 
-    return <div className='app'>
-      <header className='header'>
-        <h1>Minesweeper</h1>
-      </header>
-      {view}
-      <Footer />
-    </div>
+    return <div className='app'>{view}</div>
   }
 }
 

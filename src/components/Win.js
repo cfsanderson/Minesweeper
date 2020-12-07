@@ -1,24 +1,23 @@
 import React, { Component } from 'react'
+import Header from './Header'
+import Footer from './Footer'
 
 class Win extends Component {
-
   static propTypes = {
     reset: React.PropTypes.func.isRequired
-  }
+  };
 
   render () {
-    return <div className='win'>
-      <div>
-        <i className='fa fa-flag fa-flip-horizontal fa-fw' aria-hidden='true' />
-        <i className='fa fa-flag fa-fw' aria-hidden='true' />
+    return (
+      <div className='view'>
+        <Header />
+        <div className='win'>
+          <h1>YOU WIN!!!</h1>
+          <button onClick={() => this.props.reset()}>Play Again?</button>
+        </div>
+        <Footer />
       </div>
-      <h1>
-        YOU WIN!!!
-      </h1>
-      <button onClick={() => this.props.reset()}>
-        Play Again?
-      </button>
-    </div>
+    )
   }
 }
 

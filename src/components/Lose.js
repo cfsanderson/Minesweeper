@@ -1,23 +1,25 @@
 import React, { Component } from 'react'
+import Header from './Header'
+import Footer from './Footer'
 
 class Lose extends Component {
-
   static propTypes = {
     reset: React.PropTypes.func.isRequired
-  }
+  };
 
   render () {
-    return <div className='lose'>
-      {/* <div> */}
-      <i className='fa fa-bomb fa-fw' aria-hidden='true' />
-      {/* </div> */}
-      <h1>BOOOOOM!!!</h1>
-      <button onClick={() => this.props.reset()}>
-        Play Again?
-      </button>
-    </div>
+    return (
+      <div className='view__lose'>
+        <Header />
+        <div className='lose'>
+          <i className='fa fa-bomb fa-fw' aria-hidden='true' />
+          <h1>BOOOOOM!!!</h1>
+          <button onClick={() => this.props.reset()}>Play Again?</button>
+        </div>
+        <Footer />
+      </div>
+    )
   }
 }
-// http://fontawesome.io/examples/
 
 export default Lose
