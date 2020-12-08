@@ -15,7 +15,7 @@ class App extends Component {
 
   createGame (i) {
     window
-      .fetch(`http://minesweeper-api.herokuapp.com/games?difficulty=${i}`, {
+      .fetch(`https://minesweeper-api.herokuapp.com/games?difficulty=${i}`, {
         method: 'POST'
       })
       .then((response) => {
@@ -48,7 +48,7 @@ class App extends Component {
   check (x, y) {
     window
       .fetch(
-        `http://minesweeper-api.herokuapp.com/games/${this.state.id}/check?row=${y}&col=${x}`,
+        `https://minesweeper-api.herokuapp.com/games/${this.state.id}/check?row=${y}&col=${x}`,
         { method: 'POST' }
       )
       .then((response) => {
@@ -65,7 +65,7 @@ class App extends Component {
   flag (x, y) {
     window
       .fetch(
-        `http://minesweeper-api.herokuapp.com/games/${this.state.id}/flag?row=${y}&col=${x}`,
+        `https://minesweeper-api.herokuapp.com/games/${this.state.id}/flag?row=${y}&col=${x}`,
         { method: 'POST' }
       )
       .then((response) => {
